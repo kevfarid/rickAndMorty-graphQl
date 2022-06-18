@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import generateQuery from '../../utils/generateQuery';
+import generateQuery from '../utils/generateQuery';
 const URL = 'https://rickandmortyapi.com/graphql';
 
 export default function useQuery(query) {
