@@ -4,7 +4,10 @@ import styled from 'styled-components';
 export default function Header() {
   return (
     <Container>
-      <h1>React App</h1>
+      <span>Rick And Morty</span>
+      <Nav>
+        <Link href='/#'>Characters</Link>
+      </Nav>
     </Container>
   );
 }
@@ -12,4 +15,11 @@ export default function Header() {
 const Container = styled.header(({ theme }) => ({
   backgroundColor: theme.colors.primary,
   color: '#fff',
+  padding: '1rem 0.5rem',
+  display: 'flex',
+  justifyContent: 'space-between',
 }));
+
+const Link = styled.a(() => {});
+
+const Nav = styled.nav(() => {});

@@ -1,6 +1,4 @@
 import Header from './components/Header';
-import useQuery from './components/hooks/useQuery';
-import generateQuery from './utils/generateQuery';
 
 function App() {
   const obj = {
@@ -13,10 +11,6 @@ function App() {
       'episodesByIds(ids: [1, 2])': ['id'],
     },
   };
-
-  const { data, isLoading } = useQuery(obj);
-
-  console.log(data, isLoading);
 
   return (
     <div>
