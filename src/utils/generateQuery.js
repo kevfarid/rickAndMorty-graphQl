@@ -1,4 +1,4 @@
-export default function generateQuery({ query, variables, params }) {
+function createQuery(query) {
   const regexList = [
     {
       regex: /\[/g,
@@ -15,22 +15,28 @@ export default function generateQuery({ query, variables, params }) {
   ];
 
   const newQuery = Object.keys(query).map((key) => {
-    if (typeof query[key] === 'object') {
-      generateQuery({ query: query[key], variables, params });
-    }
+    const prefix = key;
 
-    if (typeof query[key] === 'Array') {
+    if (Array.isArray(query[key])) {
       const queryString = JSON.stringify(query[key]);
       const newQueryString = queryString.multiReplace(regexList);
-      return newQueryString;
+      return `${prefix} ${newQueryString}`;
     }
+
+    const newQuery = createQuery(query[key]).join('');
+
+    return `${prefix} { ${newQuery} }`;
   });
 
-  return {
-    query,
-    variables,
+  return newQuery;
+}
+
+export default function generateQuery({ query, params }) {
+  const newQuery = createQuery(query);
+  return JSON.stringify({
+    query: `query { ${newQuery} }`,
     params,
-  };
+  });
 }
 
 String.prototype.multiReplace = function (regexList) {
