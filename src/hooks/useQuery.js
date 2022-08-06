@@ -7,9 +7,8 @@ export default function useQuery(query) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
-  const body = generateQuery(query);
-
   const getData = useCallback(() => {
+    const body = generateQuery(query);
     fetch(URL, {
       method: 'POST',
       headers: {
@@ -32,7 +31,7 @@ export default function useQuery(query) {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [query]);
 
   return {
     data,

@@ -9,6 +9,11 @@ export default {
       success: '#4CAF50',
       warning: '#FFC107',
       info: '#2196F3',
+      unknown: '#9E9E9E',
+    },
+    neutral: {
+      grey: '#9E9E9E',
+      grey2: '#EAEAEA',
     },
     text: '#212121',
     background: '#F5F5F5',

@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link as LinkRouter } from 'react-router-dom';
 
 export default function Header() {
   return (
     <Container>
       <span>Rick And Morty</span>
       <Nav>
-        <Link href='/#'>Characters</Link>
+        <Link to="/">Characters</Link>
       </Nav>
     </Container>
   );
@@ -20,6 +21,10 @@ const Container = styled.header(({ theme }) => ({
   justifyContent: 'space-between',
 }));
 
-const Link = styled.a(() => {});
+const Link = styled(LinkRouter)(() => ({
+  '&:hover': {
+    textDecoration: 'underline',
+  },
+}));
 
 const Nav = styled.nav(() => {});
